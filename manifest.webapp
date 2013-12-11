@@ -6,7 +6,10 @@
   "permissions": {
     "storage": {
       "description": "Required for storing and retrieving pics, notes etc."
-      }
+    },    
+    "geolocation": {
+      "description": "Required for anal."
+    }
   },
   "developer": {
     "name": "Santa Gergely"
