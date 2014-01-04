@@ -6,24 +6,124 @@
     <title>Travely</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/jquery-ui/jquery-ui-1.10.3.custom.min.css">
+    <link rel="stylesheet" href="css/building-blocks/tabs.css">
+    <link rel="stylesheet" href="css/building-blocks/action_menu.css">
+    <link rel="stylesheet" href="css/building-blocks/toolbars.css">
+    <link rel="stylesheet" href="css/building-blocks/action_icons.css">
     <script src="js/3rd-party/jquery-1.9.1.js"></script>
     <script src="js/3rd-party/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"></script>
     <script src="js/map.js"></script>
+    <script src="js/main.js"></script>
     <script>
     $(function() {
 	
-      $( "#accordion" ).accordion();
+      $( "#accordion" ).accordion({ fillSpace: true });
+      
+       $(window).resize(function(){
+            // update accordion height
+            $( "#accordion" ).accordion( "resize" )
+        });
+
     });
     </script>
+    <style>
+        
+        html, body  {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #accordion {
+            height: 100%;
+        }
+        
+        #panel1 a:after {
+          background-image: url(style/navigation/map.png);
+        }
+
+        #panel2 a:after {
+          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAB4CAYAAADogzKiAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUU2QzI0RDUwQzBDMTFFMjk5NTZBOEE4MUY4QjNCN0EiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUU2QzI0RDYwQzBDMTFFMjk5NTZBOEE4MUY4QjNCN0EiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBRTZDMjREMzBDMEMxMUUyOTk1NkE4QTgxRjhCM0I3QSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBRTZDMjRENDBDMEMxMUUyOTk1NkE4QTgxRjhCM0I3QSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PrKUdlEAAANNSURBVHja7JnPaxNBFMfTGNT2ZISAhRiPCnqSVLCCoKdeDIh4awQVghfv4h/gwaOIxYNW9GLpQUgPPRQqeIitGi9NbW/SqjGQg4I2tBJZvw/e4naZXzu79kecgS9td9+8z87M29n9dvs8z0v9y9bnAA6wpYAB6Bj/vgx1jHoRQKMsNAateX/bGh/L6vrrkuegJU/eljjGGjDh6dukKodqDfLQKq2TbpahI9An0cm0ouMZg+QpjhmWnVQB+iNUY78NYCECYMGmTGl9GgaL3OBYqyoahjYUyTc4xrpMSeegFUHyFT6Xsi3TYNsPXYBO8N8NaApa3/bNTlZFGajC1VFW9B/l0VS4j1EVFaB6YK67UFkQN8rn/FbnvspFzkNNwYKGIeVQcr81OYcUMKsoSR8iS+63WRmgaHBTdTXJ/Vb08wYXecigKPawdG1IVEX7EqzOvSLAjwQBP0WALwkCmiLAhwQBy7Kt4it0KGbyFjQo2ypmErj6GdVe9DwBwIRqN6UH+IGYgO/8puHerh3AARxg5wGuv+5YJXh0ekB5PhMhl5VPThvEZKExqA3VWW0+lo0LyEE16AaPIDgaOlbD1ObiAO4HpkXU6NwDWwD55MsGU3gJozhsA3A+WQt4Dy0aJF/k2MgAj73XL0UMnavgbvZsy5TugRH+r0u40bERJK/F3SpeQkdtfbLpXkSJJllb65NxkzWgCpQxBRSgeeghT8m4BEIm/Al0nGPnASnoALQ9zEEnQ8YvDClz8qAhpD5zgORVa/A0aB4EEL+NS9zmIOc4L3qiFfHjrWbNfgeAShuL8n0XniLnk3vUJ6dDm1crgeQtVNDH3vHJ4Tt5GjqYgE92r+8O4AAO4ADCViqVNvnkarXaSQSAxOSF70BXAla2wy9YtwH6Zg1AcvLArxRWlp69ZwFpb5tPlo4AVx/pezJG4b4n7zafjEUz9skcG71M0VHrkzkm3laBkhV+T0by9Z252eGK6ZXyGnQTuosrfSYZGVnZW9A96DHiuloAOpHXfRGwsmT8roYhnDxoZamSLiJuVQrg7eGNwMpugiCuLLGy9B3uFOI+W/lkJLb3yeicqE/GKJxP/l98cvg+SOR7Miqoh74nO5/sALsA8EeAAQCMPMLp3+w1fQAAAABJRU5ErkJggg==);
+        }
+
+        #panel3 a:after {
+          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAB4CAYAAADogzKiAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUU2QzI0RDEwQzBDMTFFMjk5NTZBOEE4MUY4QjNCN0EiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUU2QzI0RDIwQzBDMTFFMjk5NTZBOEE4MUY4QjNCN0EiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBRTZDMjRDRjBDMEMxMUUyOTk1NkE4QTgxRjhCM0I3QSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBRTZDMjREMDBDMEMxMUUyOTk1NkE4QTgxRjhCM0I3QSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlXYxucAAAEmSURBVHja7JZNDsFQFEZLjOxGB8Qmugnr0AHrsAcpe/AzqA1gYNIJhiYkdV/y6M3LaySlSSPnJVdaX/XQ9sjXyvM8qHO1g5oXAAAACkBfJncmVcdNPPlE5akn72vA2QO/qO1P+dWTnzXgJHN3DjiWbL/WQW3vnexuz/kGPGTmzgELtb+WydR+Zt97raXzBef2nEGLf1M8wAM8wAM8wAMAAAAAAACgMYCOeRmtbqbDbJxsJxOqXjR28qlMPBt2zedNL+o5+UCyLb2otBfJ5Sl6kVzDyjfR3AM8+N4D2+UreWA9wgM8wAM8+NoDHlMAAAAAAACgGb0oiiJvL0qSJLS5txdJHtvc24sk/5deJD/l573InpNehAd4gAd4gAd4AADA3wCeAgwA2E15Rlze638AAAAASUVORK5CYII=);
+        }
+        #navigation-notes {
+            display: none;
+        }
+    </style>
 </head>
 
 <body role="application">
 
-    <div id="accordion">
+<div role="toolbar" id="navigation-main" data-items="4">
+  <ul data-items="4">
+    <li>
+        <button>
+            <img src="/style/icons/navigation/map.png" width="40" height="40" class="navigation-button"/>
+        </button>
+    </li>
+ 
+    <li>
+        <button>
+            <img src="/style/icons/navigation/notes.png" width="40" height="40" class="navigation-button"/>
+        </button>
+    </li>
+ 
+    <li>
+        <button>
+            <img src="/style/icons/navigation/photo.png" width="40" height="40" class="navigation-button"/>
+       </button>
+    </li>
+
+    <li>
+        <button>
+            <img src="/style/icons/navigation/common-back.png" width="40" height="40" class="navigation-button"/>
+       </button>
+    </li>
+  </ul>
+</div>
+
+<div role="toolbar" id="navigation-notes">
+  <ul>
+      <li>
+          <button>
+            <img src="/style/icons/navigation/common-back.png" width="50" height="50" class="navigation-button"/>
+          </button>
+      </li>
+  </ul>
+  <ul>
+      <li>
+          <button>
+              <img src="/style/icons/navigation/common-menu.png" width="50" height="50" class="navigation-button"/>
+          </button>
+      </li>
+  </ul>
+</div>
+
+<!--<form role="dialog" data-type="action">
+  <header>Title</header>
+  <menu>
+    <button>Action 1</button>
+    <button disabled>Action 2 (disabled)</button>
+    <button>Action 3</button>
+    <button>Action 4</button>
+    <button disabled>Action 5 (disabled)</button>
+    <button>Action 6</button>
+    <button>Action 7</button>
+    <button disabled>Action 8 (disabled)</button>
+    <button>Action 9</button>
+    <button>Cancel</button>
+  </menu>
+</form>-->
+    
+   <!-- <div id="accordion">
         <h3>Térkép</h3>
         <div>
-            <div id="googleMap" style="width:500px;height:380px;"></div>
+            
         </div>
         <h3>Képek</h3>
         <div>
@@ -35,7 +135,7 @@
         <div>
             Jegyzetek lesznek majd itt.
         </div>
-    </div>
+    </div>-->
 </body>
 
 </html>
