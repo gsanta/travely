@@ -2,26 +2,27 @@ require('dependencies/js/jquery/jquery-1.9.1');
 require('dependencies/js/jquery/jquery-ui-1.10.3.custom.min');
 require('dependencies/js/ember/ember');
 require('dependencies/js/ember/ember-data');
+require('dependencies/js/ember/localstorage_adapter');
 require('dependencies/js/bootstrap/bootstrap.min');
 require('build/js/templates');
 
 window.App = Ember.Application.create();
 
-App.Router.map(function () {
-    this.route("map", { path: "/" });
-    this.route("photos");
-    this.route("setup");
-    this.resource("notes");
-} );
 
 App.Store = DS.Store.extend( {
     revision: 12,
-    adapter: DS.FixtureAdapter
+    adapter: DS.LSAdapter.extend({
+		namespace: 'travely'
+	})
+    // adapter: DS.RESTAdapter.extend({
+    // 	url: 'http://localhost/travely_server/data.json'
+    // })
 } );
 
 require( 'app/js/routes/router' );
 require( 'app/js/models/note' );
 require( 'app/js/routes/notes' );
+require( 'app/js/controllers/notes' );
 
 
 // $(function() {

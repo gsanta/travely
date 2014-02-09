@@ -1,7 +1,8 @@
 <form role="form">
   <div class="form-group">
-    <label for="textarea-note">Give your note</label>
-    <textarea class="form-control" rows="3"></textarea>
+    <!--<textarea class="form-control" rows="3" placeholder="give your note"></textarea>-->
+    {{view Ember.TextField valueBinding="model.title" class="form-control" placeholder="give your note's title"}}
+    {{view Ember.TextArea valueBinding="model.content" class="form-control" }}
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" class="btn btn-default" {{action 'save'}}>Submit</button>
 </form>

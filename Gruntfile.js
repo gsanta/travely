@@ -40,7 +40,7 @@ module.exports = function(grunt) {
                 tasks: ['compass']
             },
             applicationCode: {
-                files: ['app/js/*.js'],
+                files: ['app/js/**/*.js'],
                 tasks: ['neuter']
             },
             handlebarsTemplates: {
