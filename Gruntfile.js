@@ -31,7 +31,7 @@ module.exports = function(grunt) {
             options: {
                 includeSourceURL: true
             },
-            'build/application.js': 'app/js/app.js'
+            'build/js/application.js': 'app/js/app.js'
         },
 
         watch: {
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
                     return sourceFile.replace(/app\/js\/templates\//, '');
                 }
             },
-            'dependencies/js/compiled/templates.js': ["app/js/templates/**/*.hbs"]
+            'build/js/templates.js': ["app/js/templates/**/*.hbs"]
         }
 
 

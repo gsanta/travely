@@ -5,6 +5,15 @@
 </nav>
 Notes
 
-<button id="testButton">Klikk</button>
+<table>
+
+{{#each model}}
+
+<tr><td>
+	{{ title }}
+</tr></td>
+
+{{/each}}
+
 
 {{outlet}}
