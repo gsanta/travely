@@ -4,6 +4,7 @@ require('dependencies/js/ember/ember');
 require('dependencies/js/ember/ember-data');
 require('dependencies/js/ember/localstorage_adapter');
 require('dependencies/js/bootstrap/bootstrap.min');
+require('dependencies/js/moment/moment');
 require('build/js/templates');
 
 window.App = Ember.Application.create();
@@ -23,6 +24,10 @@ require( 'app/js/routes/router' );
 require( 'app/js/models/note' );
 require( 'app/js/routes/notes' );
 require( 'app/js/controllers/notes' );
+
+Ember.Handlebars.helper('format-date', function( date ) {
+	return moment(date).fromNow();
+} );
 
 
 // $(function() {

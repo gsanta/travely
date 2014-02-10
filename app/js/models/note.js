@@ -4,6 +4,12 @@ App.Note = DS.Model.extend( {
 	postedAt: DS.attr( 'date' )
 } );
 
+App.NoteTemp = Ember.Object.extend( {
+	title: "",
+	description: "",
+	postedAt: ""
+} );
+
 App.Note.FIXTURES = [ {
 		id: 1,
 		title: "First note",

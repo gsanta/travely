@@ -1,6 +1,9 @@
 App.NotesRoute = Ember.Route.extend( {
 	model: function() {
-		return this.store.find('note');
+		return {
+			notes: this.store.find('note'),
+			newNote: new App.NoteTemp
+		}
 	}
 } );
 
