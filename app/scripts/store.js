@@ -1,0 +1,1 @@
+TravelyYoeman.ApplicationAdapter = DS.FixtureAdapter;
