@@ -6,8 +6,9 @@
 		<div class="list-group-item-heading">
 			<span class="posted-at">{{this.postedAt}}</span>
 			<span class="title">{{this.title}}</span>
+			<span>{{#link-to 'note.edit' this class="btn btn-default navbar-btn"}}Edit{{/link-to}}</span>
 		</div>
-		<div class="list-group-item-text content">{{this.content}}</div> 
+		<div class="list-group-item-text content">{{this.body}}</div> 
 	</div>
 	{{/each}}
 </div>
