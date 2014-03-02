@@ -6,8 +6,6 @@ var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
 
-var stage = 'dev';
-
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -344,7 +342,6 @@ module.exports = function (grunt) {
                      * TODO: find better solution for separation dev from test
                      */
                     (function() {
-                        console.log('the stage right here: ' + grunt.option('target'));
                         if( grunt.option( 'target' ) == 'dev' ) {
                             return '<%= yeoman.app %>/scripts/store.js';
                         } else {
@@ -367,8 +364,7 @@ module.exports = function (grunt) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
         }
-        console.log('the stage right here2: ' + grunt.task.current.name);
-        stage = 'dev';
+
 
         grunt.task.run([
             'clean:server',
@@ -392,8 +388,6 @@ module.exports = function (grunt) {
     // ]);
 
     grunt.registerTask('test', function(target) {
-        console.log("I am in the test now")
-        stage = 'test';
 
         grunt.task.run(
             [

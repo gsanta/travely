@@ -1,17 +1,12 @@
 <h1>Note</h1>
 
-<table>
-  {{#each buffer}}
-  <tr>
-    <td>
-      <strong>{{key}}:</strong>
-    </td>
-    <td>
-      {{input value=value}}
-    </td>
-  </tr>
-  {{/each}}
-</table>
+<div class="note-form">
+  <label>Title:</label>
+  {{input value=title}}
+
+  <label>Content</label>
+  {{input value=content2}}
+</div>
 
 <button {{action 'save'}}>Update</button>
 

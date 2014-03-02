@@ -1,5 +1,5 @@
 Travely.NoteEditController = Ember.ObjectController.extend({
-  needs: 'note',
+  //needs: 'note',
   actions: {
     save: function(){
       self = this
