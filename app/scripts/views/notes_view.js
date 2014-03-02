@@ -1,2 +1,2 @@
-TravelyYoeman.NotesView = Ember.View.extend({
+Travely.NotesView = Ember.View.extend({
 });

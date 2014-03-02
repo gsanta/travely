@@ -1,6 +1,6 @@
 module("Integration Tests", {
     setup: function() {
-        TravelyYoeman.reset();
+        Travely.reset();
     }
 });
 

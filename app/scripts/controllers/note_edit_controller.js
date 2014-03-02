@@ -1,4 +1,4 @@
-TravelyYoeman.NoteEditController = Ember.ObjectController.extend({
+Travely.NoteEditController = Ember.ObjectController.extend({
   needs: 'note',
   actions: {
     save: function(){

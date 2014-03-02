@@ -1,4 +1,4 @@
-TravelyYoeman.NotesRoute = Ember.Route.extend({
+Travely.NotesRoute = Ember.Route.extend({
   model: function() {
     return this.get('store').find('note');
   }

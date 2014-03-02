@@ -6,6 +6,8 @@ var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
 
+var stage = 'dev';
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -36,7 +38,7 @@ module.exports = function (grunt) {
                 tasks: ['compass:server']
             },
             neuter: {
-                files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+                files: ['<%= yeoman.app %>/scripts/{,*/}*.js','!<%= yeoman.app %>/scripts/store.js'],
                 tasks: ['neuter']
             },
             livereload: {
@@ -334,7 +336,23 @@ module.exports = function (grunt) {
                         return yeomanConfig.app + '/' + filepath;
                     }
                 },
-                src: '<%= yeoman.app %>/scripts/app.js',
+                src: 
+                [ 
+                    '<%= yeoman.app %>/scripts/app.js', 
+                    /*
+                     * If --target=dev return store.js, if --target=test return store_test.js
+                     * TODO: find better solution for separation dev from test
+                     */
+                    (function() {
+                        console.log('the stage right here: ' + grunt.option('target'));
+                        if( grunt.option( 'target' ) == 'dev' ) {
+                            return '<%= yeoman.app %>/scripts/store.js';
+                        } else {
+                            return 'test/support/store_test.js';
+                        }
+
+                    })()
+                ],
                 dest: '.tmp/scripts/combined-scripts.js'
             }
         }
@@ -349,6 +367,8 @@ module.exports = function (grunt) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
         }
+        console.log('the stage right here2: ' + grunt.task.current.name);
+        stage = 'dev';
 
         grunt.task.run([
             'clean:server',
@@ -362,14 +382,30 @@ module.exports = function (grunt) {
         ]);
     });
 
-    grunt.registerTask('test', [
-        'clean:server',
-        'replace:app',
-        'concurrent:test',
-        'connect:test',
-        'neuter:app',
-        'karma'
-    ]);
+    // grunt.registerTask('test', [
+    //     'clean:server',
+    //     'replace:app',
+    //     'concurrent:test',
+    //     'connect:test',
+    //     'neuter:app',
+    //     'karma'
+    // ]);
+
+    grunt.registerTask('test', function(target) {
+        console.log("I am in the test now")
+        stage = 'test';
+
+        grunt.task.run(
+            [
+                'clean:server',
+                'replace:app',
+                'concurrent:test',
+                'connect:test',
+                'neuter:app',
+                'karma'
+            ]
+        );
+    }); 
 
     grunt.registerTask('build', [
         'clean:dist',

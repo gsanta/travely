@@ -1,4 +1,4 @@
-TravelyYoeman.NotesController = Ember.ObjectController.extend({
+Travely.NotesController = Ember.ObjectController.extend({
   // Implement your controller here.
 });
 

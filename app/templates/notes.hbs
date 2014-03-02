@@ -1,9 +1,15 @@
 <h1>Notes</h1>
 
-<ul>
- {{#each model}}
- <li>{{#link-to 'note' this}}{{this.id}}{{/link-to}}</li>
-  {{/each}}
-</ul>
+<div class="list-group listing-notes">
+	{{#each model}}
+	<div class="list-group-item active">
+		<div class="list-group-item-heading">
+			<span class="posted-at">{{this.postedAt}}</span>
+			<span class="title">{{this.title}}</span>
+		</div>
+		<div class="list-group-item-text content">{{this.content}}</div> 
+	</div>
+	{{/each}}
+</div>
 
 {{outlet}}

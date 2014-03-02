@@ -1,6 +1,6 @@
 test('note model properties', function() {
 
-	var store = TravelyYoeman.__container__.lookup('store:main'),
+	var store = Travely.__container__.lookup('store:main'),
       model;
 
 	Ember.run(function() {

@@ -1,8 +1,8 @@
-var TravelyYoeman = window.TravelyYoeman = Ember.Application.create();
+var Travely = window.Travely = Ember.Application.create();
+
 
 /* Order and include as you please. */
 require('scripts/controllers/*');
-require('scripts/store');
 require('scripts/models/*');
 require('scripts/routes/*');
 require('scripts/views/*');

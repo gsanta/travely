@@ -1,4 +1,4 @@
-TravelyYoeman.Router.map(function () {
+Travely.Router.map(function () {
   
   this.resource('notes', function(){
     this.resource('note', { path: '/:note_id' }, function(){

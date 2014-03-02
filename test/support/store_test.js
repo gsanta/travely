@@ -1,0 +1,1 @@
+Travely.ApplicationAdapter = DS.FixtureAdapter;
